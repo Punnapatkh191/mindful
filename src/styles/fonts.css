@@ -1,0 +1,5 @@
+/* Ooca / mindfull design-system typography.
+   Gotham Rounded is proprietary (not on Google Fonts); Nunito is the closest
+   rounded-geometric humanist substitute for the DS's friendly, soft-cornered latin type.
+   Prompt is the DS Thai typeface and is available on Google Fonts. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600&display=swap');
