@@ -302,7 +302,7 @@ npm run preview
 
 The project is built with Vite and deployed as a static web application.
 
-Production deployment is hosted on Vercel.
+Production deployment is hosted on Vercel. https://mindful-hxpf4y95q-m-0931.vercel.app/
 
 ---
 
