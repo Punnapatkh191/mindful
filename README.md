@@ -1,313 +1,123 @@
 # Mindful
 
-A short 2-minute reflection experience designed to help users notice what has been taking up space in their minds.
+A short, 2-minute reflection experience that helps people pause and notice what has been taking up space in their minds. Users choose topics, arrange them around Mooca, and reflect on what feels hardest about the topic closest to them.
 
-The experience does not score, diagnose, or classify the user. Instead, it gives users a simple way to pause, identify what is present, and reflect on what feels most difficult right now.
+[Live demo](https://mindful-hxpf4y95q-m-0931.vercel.app/) · [Problem & Approach in Figma](https://www.figma.com/design/4OkxtJ5PIpGDq1mHwfvZaL/Ooca_Assignment_Punnapat?node-id=33-15990) · [User Flow in Figma](https://www.figma.com/design/4OkxtJ5PIpGDq1mHwfvZaL/Ooca_Assignment_Punnapat?node-id=35-16247)
 
----
+## Problem & approach
 
-## Problem & Approach
+Every day, work, relationships, money, family, and the future compete for our attention. We may not get a moment to notice which of these is taking up the most space in our minds.
 
-### Problem
+The design challenge is to make that moment of reflection approachable without making it feel like a test or evaluation. Mindful uses three steps:
 
-Every day, we have many things to think about — work, relationships, money, family, or the future. Sometimes we don't even realize which one is taking up the most space in our minds.
+- **Notice:** Choose what has been on your mind, rather than rate how stressed you feel.
+- **Weigh:** Move topics closer to or farther from yourself. Distance expresses what feels heavier without assigning a score.
+- **Focus:** Reflect on the closest topic through a short question, then see your own choices reflected back in a gentle reframe.
 
-Many mental health experiences rely on questions, scores, or assessments to help users understand how they feel. While these approaches can be useful, they can also make a simple moment of self-reflection feel like a test or evaluation.
+The experience does not score, diagnose, or classify the user. Its purpose is to help people pause and notice, rather than solve everything within two minutes.
 
-For this experience, I wanted to create something lighter and more approachable — a short moment where users can simply notice what they are carrying without needing to know exactly what is wrong or what they should do about it.
+## Design principles
 
-### Design Challenge
+- **No judgment:** No right or wrong answers and no evaluation of the user.
+- **Do not try to fix everything:** A brief pause can be useful without producing a solution.
+- **Let users define the meaning:** The person decides which topics matter and how heavy they feel.
+- **Keep reflection simple:** Select, drag, and answer a short question instead of completing a long form.
 
-How might we create a short experience that helps people notice what is currently taking up space in their minds, without making them feel like they are taking a test or being evaluated?
+Mooca serves as a visual companion and spatial anchor throughout the experience.
 
-### Approach
+## User flow
 
-#### Notice
+`Intro → Notice → Weigh → Focus → Insight → Complete`
 
-Let users choose the things that are currently on their mind from a set of predefined options.
+| Step | What happens |
+| --- | --- |
+| Intro | Introduces the reflection and invites the user to begin. |
+| Notice | Select one or more topics. Something else opens a required text field for one custom topic. |
+| Weigh | Drag topics around Mooca, or use the arrow keys on a focused chip. Closer means more present or heavier. |
+| Focus | The closest topic determines four specific reasons plus “I’m not sure.” Select one reason to continue. |
+| Insight | Shows a reframe and a summary based on the selected topic and reason. |
+| Complete | Closes the reflection and offers Start again. |
 
-Users can select multiple topics, with a maximum of six choices. If what they are carrying does not fit the available options, they can choose "Something else" and describe it themselves.
+The current implementation has 11 topic choices: Work, Relationships, Money, Family, Future, Myself, Health, Studies, Loneliness, Life changes, and Something else. Users can select all available choices; there is no six-topic limit. A custom topic is limited to 60 characters.
 
-The goal is to let users start by simply recognizing what is present in their mind.
+Back navigation retains selections and placements. If the closest topic changes, its previous reason is cleared. Start again clears the reflection. Answers live only in browser memory and are not sent to a server or saved; refreshing the page also clears them.
 
-#### Weigh
+The Figma links document the design rationale and flow. The description above reflects the behavior of the current code.
 
-After choosing the topics, users are asked to arrange them spatially.
+## Run locally
 
-They can move each topic closer to or further away from themselves until the placement feels right.
+Use **Node.js 24** and npm.
 
-The interaction gives users a simple way to express which things feel more present or heavier without asking them to assign a number or score.
+```sh
+git clone https://github.com/Punnapatkh191/mindful.git
+cd mindful
+npm ci
+npm start
+```
 
-#### Focus
+Open the local URL printed by Vite, usually `http://127.0.0.1:5173/`. If that port is occupied, Vite may select another one. To request a specific port:
 
-The topic that the user places closest to themselves becomes the focus of the next step.
+```sh
+npm start -- --port 5175 --strictPort
+```
 
-The experience then asks a simple question about that topic to help the user reflect on what feels hardest about it.
+Stop the server with `Ctrl+C`. No backend, account, API key, or environment file is required.
 
-#### Insight
+## Commands
 
-The experience reflects the user's own choices back to them.
+| Command | Purpose |
+| --- | --- |
+| `npm start` | Start the local development server. |
+| `npm run dev` | Alias for the same development server. |
+| `npm run typecheck` | Check TypeScript without generating files. |
+| `npm run build` | Create the production website in `dist/`. |
+| `npm run preview` | Serve an existing production build locally. |
 
-Rather than providing a score, diagnosis, or evaluation, the insight is presented as a gentle reframe based on what the user selected.
+For a production check:
 
-The goal is not to solve the problem, but to help the user notice what they may be carrying.
-
----
-
-## Design Principles
-
-### No Judgment
-
-No scores, no right or wrong answers, and no results that tell users what they are.
-
-### Don't Try to Fix Everything
-
-The purpose of this experience is simply to help users pause and notice what they are carrying within two minutes.
-
-It is not designed to solve every problem.
-
-### Let Users Define Their Own Meaning
-
-The experience does not interpret what users should feel.
-
-Instead, it reflects the choices users make and lets them decide what those choices mean to them.
-
-### Make Self-Reflection Simple
-
-Use simple choices, spatial interaction, and short questions instead of asking users to provide a lot of information.
-
----
-
-## User Flow
-
-The experience follows a short reflection journey from noticing what is present, to identifying what feels most significant, and finally reflecting on it.
-
-### 1. Intro
-
-The user enters the experience and is introduced to the 2-minute reflection.
-
-**Action:** Start the experience.
-
-↓
-
-### 2. Notice
-
-The user is asked to choose what has been taking up space in their mind.
-
-The user can choose from the available topics.
-
-↓
-
-### 3. Check Selected Topics
-
-The experience checks whether the user is choosing from the available options.
-
-**Yes — selecting from the available options**
-
-The user can select up to a maximum of 6 topics.
-
-↓
-
-### 4. Choose More
-
-After selecting a topic, the user decides whether they want to choose another one.
-
-**Yes:** Return to the available topic options and continue selecting.
-
-**No:** Finish selecting topics and continue to Weigh.
-
-↓
-
-### Alternative Path — Something Else
-
-If the user's thought does not fit the available options, they can choose:
-
-**Something else**
-
-↓
-
-### 5. Enter Something Else
-
-The user can enter their own topic manually.
-
-**Action:** Enter the topic.
-
-↓
-
-The user returns to the "Choose more" decision and can decide whether to continue selecting or finish.
-
-↓
-
-### 6. Weigh
-
-The selected topics are shown in a spatial area around "You".
-
-The user can move each topic closer to or further away from themselves.
-
-The user arranges the topics until the placement feels right.
-
-↓
-
-### 7. Focus
-
-The experience identifies the topic the user placed closest to themselves.
-
-The user is then asked to reflect on that topic.
-
-↓
-
-### 8. Insight
-
-The experience reflects the user's selected topic and response back to them through a short, gentle insight.
-
-There is no score, diagnosis, or evaluation.
-
-↓
-
-### 9. Complete
-
-The experience ends with a short closing moment.
-
-The user can finish the experience or start again.
-
----
-
-## User Flow Summary
-
-INTRO
-
-↓
-
-NOTICE
-
-↓
-
-Choose from available options?
-
-→ Yes [Maximum 6] → Choose more?
-
-→ Yes → Return to choosing from available options
-
-→ No → WEIGH
-
-→ No [Maximum 1] → Something else → Enter manually → Choose more?
-
-↓
-
-WEIGH
-
-↓
-
-FOCUS
-
-↓
-
-INSIGHT
-
-↓
-
-COMPLETE
-
----
-
-## Interaction Highlights
-
-### Spatial Reflection
-
-Instead of asking users to rate how they feel with a number, the experience uses spatial distance to let users express what feels closer or heavier.
-
-### User-Controlled Reflection
-
-Users decide what topics are relevant to them and how those topics should be positioned.
-
-The experience does not determine the meaning of their choices for them.
-
-### Gentle Feedback
-
-The interface uses subtle movement, scale, proximity, and visual feedback to make the interaction feel calm and responsive.
-
-### Mooca as a Companion
-
-Mooca acts as the visual anchor throughout the experience.
-
-It provides a calm presence rather than behaving as an assistant that gives advice or evaluates the user.
-
-### Progressive Reflection
-
-The experience gradually moves through:
-
-Notice → Weigh → Focus → Insight
-
-Each step asks the user to reflect on only one thing at a time, keeping the overall experience short and approachable.
-
----
-
-## High-Fidelity Screens
-
-The final design includes high-fidelity screens for the main moments of the experience:
-
-- Intro
-- Notice
-- Weigh
-- Focus
-- Insight
-- Complete
-
-The interface uses a calm visual language with soft surfaces, rounded components, subtle motion, and restrained use of brand colors.
-
----
-
-## Tech Stack
-
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- Motion
-- Lucide React
-
----
-
-## Project Structure
-
-The project is organized around the main application, imported design assets, and global styling.
-
-- `src/app/` — main application
-- `src/imports/` — imported design assets and components
-- `src/styles/` — global styles, theme, typography, and Tailwind setup
-
----
-
-## Running the Project
-
-Install dependencies:
-
-npm install
-
-Run the development server:
-
-npm run dev
-
-Build for production:
-
+```sh
+npm run typecheck
 npm run build
-
-Preview the production build locally:
-
 npm run preview
+```
 
----
+The app can be hosted as a static website. For Vercel, use `npm run build` as the build command and `dist` as the output directory. The live-demo link above is the existing Vercel deployment.
 
-## Deployment
+## Tech stack
 
-The project is built with Vite and deployed as a static web application.
+React 18, TypeScript, Vite, Tailwind CSS, Motion, and Lucide React.
 
-Production deployment is hosted on Vercel. https://mindful-hxpf4y95q-m-0931.vercel.app/
+## Source layout
 
----
+```text
+src/
+  app/
+    App.tsx          Shared state and screen transitions
+    screens.tsx      The six screens
+    content.ts       Topics, topic-specific reasons, and insight copy
+    spatial.ts       Position, bounds, and layout calculations
+    MentalSpace.tsx  Dragging, keyboard movement, and spatial rendering
+    Mooca.tsx        Artwork fitting and motion
+    ui.tsx           Logo, shared buttons, and progress dots
+  imports/
+    logoPaths.ts     Original logo geometry
+    Mooca/           Geometry for the three mascot poses used by the app
+  main.tsx           React entry point
+  styles.css         Fonts, brand tokens, and shared responsive styles
+public/fonts/        The fonts used by the app and their OFL licenses
+```
 
-## Reflection
+`package-lock.json` is included for reproducible installation. Generated output, installed dependencies, editor files, and local environment files are ignored by Git.
 
-The goal of Mindful is not to tell users how they feel.
+## Editing content and artwork
 
-It is to create a small space where they can stop, notice what they are carrying, and leave with a little more awareness than they had before.
+- Edit `TOPICS` and `TOPIC_REASONS` in `src/app/content.ts`. Each reason contains its own two-line insight, so the Focus screen and result stay connected.
+- Keep topic and reason IDs stable when changing labels.
+- Change shared controls in `src/app/ui.tsx` and shared styles in `src/styles.css`.
+- Preserve SVG paths, viewBox values, and internal artwork coordinates at their original precision. Rounding vector coordinates damages curves and alignment.
+
+## Accessibility and fonts
+
+The interface includes labeled inputs, keyboard selection, arrow-key topic movement, focus indicators, a skip link, and support for reduced motion. Nunito is used for Latin text and Prompt for Thai text; both are self-hosted. Their license files are included under `public/fonts/`.
+
+The original brand palette is preserved. Some text and focus-color combinations have insufficient contrast for WCAG AA, so this project does not claim full WCAG AA conformance.
