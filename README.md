@@ -2,7 +2,7 @@
 
 A short, 2-minute reflection experience that helps people pause and notice what has been taking up space in their minds. Users choose topics, arrange them around Mooca, and reflect on what feels hardest about the topic closest to them.
 
-[Live demo](https://mindful-hxpf4y95q-m-0931.vercel.app/) · [Problem & Approach in Figma](https://www.figma.com/design/4OkxtJ5PIpGDq1mHwfvZaL/Ooca_Assignment_Punnapat?node-id=33-15990) · [User Flow in Figma](https://www.figma.com/design/4OkxtJ5PIpGDq1mHwfvZaL/Ooca_Assignment_Punnapat?node-id=35-16247)
+[Live demo](https://punnapatkh191.github.io/mindful/) · [Problem & Approach in Figma](https://www.figma.com/design/4OkxtJ5PIpGDq1mHwfvZaL/Ooca_Assignment_Punnapat?node-id=33-15990) · [User Flow in Figma](https://www.figma.com/design/4OkxtJ5PIpGDq1mHwfvZaL/Ooca_Assignment_Punnapat?node-id=35-16247)
 
 ## Problem & approach
 
@@ -81,7 +81,7 @@ npm run build
 npm run preview
 ```
 
-The app can be hosted as a static website. For Vercel, use `npm run build` as the build command and `dist` as the output directory. The live-demo link above is the existing Vercel deployment.
+The app is hosted on GitHub Pages. Every push to `main` runs `.github/workflows/deploy.yml`, installs dependencies, checks TypeScript, builds the site, and publishes `dist/`. The workflow can also be run manually from GitHub Actions. In repository Settings → Pages, the build source must be **GitHub Actions**. Vite uses relative asset paths so the website and fonts work under `/mindful/`.
 
 ## Tech stack
 
@@ -105,6 +105,7 @@ src/
   main.tsx           React entry point
   styles.css         Fonts, brand tokens, and shared responsive styles
 public/fonts/        The fonts used by the app and their OFL licenses
+.github/workflows/   The workflow required to publish on GitHub Pages
 ```
 
 `package-lock.json` is included for reproducible installation. Generated output, installed dependencies, editor files, and local environment files are ignored by Git.
